@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 import { QUERIES, WEIGHTS } from '../../constants';
@@ -36,6 +36,22 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
+const fadeIn = keyframes`
+	from {
+		opacity: 0;
+	} to {
+		opacity: 1;
+	}
+`;
+
+const slideIn = keyframes`
+	from {
+		transform: translateX(100%);
+	} to {
+		transform: translateX(0);
+	}
+`;
+
 const Overlay = styled(DialogOverlay)`
   position: fixed;
   top: 0;
@@ -45,6 +61,7 @@ const Overlay = styled(DialogOverlay)`
   background: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
+  animation: ${fadeIn} 150ms linear;
 `;
 
 const Content = styled(DialogContent)`
@@ -54,6 +71,8 @@ const Content = styled(DialogContent)`
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+  animation: ${slideIn} 350ms ease-out backwards;
+  animation-delay: 150ms;
 `;
 
 const CloseButton = styled(UnstyledButton)`
@@ -67,6 +86,8 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  animation: ${fadeIn} 350ms linear backwards;
+  animation-delay: 350ms;
 `;
 
 const NavLink = styled.a`
@@ -84,12 +105,15 @@ const NavLink = styled.a`
 const Filler = styled.div`
   flex: 1;
 `;
+
 const Footer = styled.footer`
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
   justify-content: flex-end;
+  animation: ${fadeIn} 350ms linear backwards;
+  animation-delay: 350ms;
 `;
 
 const SubLink = styled.a`

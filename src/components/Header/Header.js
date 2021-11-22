@@ -75,7 +75,8 @@ const DesktopNav = styled.nav`
   display: flex;
   gap: clamp(1rem, 9.2vw - 4.5rem, 3.5rem);
   margin: 0px 48px;
-
+  overflow: hidden;
+  position: relative;
   @media ${QUERIES.tabletAndSmaller} {
     display: none;
   }
@@ -120,9 +121,19 @@ const NavLink = styled.a`
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
-
+  transition: transform 150ms linear;
   &:first-of-type {
     color: var(--color-secondary);
+  }
+  &:hover {
+  		transition: transform 100ms linear;
+	  transform: translateY(-100%);
+  }
+  &::after {
+	  content: "${props => props.children}";
+	  display: block;
+	  position: absolute;
+	  font-weight: bold;
   }
 `;
 
